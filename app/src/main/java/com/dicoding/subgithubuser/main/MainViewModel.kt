@@ -21,16 +21,20 @@ class MainViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    init {
+        findUsers("dicoding")
+    }
+
     fun findUsers(query: String) {
         _isLoading.value = true
-        val client = ApiConfig.getApiService().getDetailUsers(query)
+        val client = ApiConfig.getApiService().getSearchUsers(query)
         client.enqueue(object: Callback<ListUsersResponse> {
             override fun onResponse(
                 call: Call<ListUsersResponse>,
                 response: Response<ListUsersResponse>
             ) {
+                _isLoading.value = false
                 if (response.isSuccessful){
-                    _isLoading.value = false
                     _listUser.value = response.body()?.items
 //                    _listUser.postValue(response.body()?.items)
                 }else{

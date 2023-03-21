@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import androidx.activity.viewModels
@@ -20,7 +21,7 @@ import com.dicoding.subgithubuser.response.UsersResponse
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
-    private val mainViewModel by viewModels<MainViewModel>()
+    private val mainViewModel: MainViewModel by viewModels()
     private var hint = ""
 
     private lateinit var binding: ActivityMainBinding
@@ -38,13 +39,7 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
         userAdapter = ListUserAdapter()
         userAdapter.notifyDataSetChanged()
 
-
-        if (savedInstanceState == null) {
-            mainViewModel.findUsers("dicoding")
-        }
-
         mainViewModels()
-        RecyclerView()
         onClickCallback()
     }
 
@@ -77,9 +72,10 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
 
     private fun mainViewModels() {
         mainViewModel.listUser.observe(this) { list ->
-            if (!list.isNullOrEmpty()) {
-                userAdapter.itemCount
+            if (list.isNotEmpty()) {
+                userAdapter.setData(list)
                 showLoading(false)
+                RecyclerView()
             }
         }
 

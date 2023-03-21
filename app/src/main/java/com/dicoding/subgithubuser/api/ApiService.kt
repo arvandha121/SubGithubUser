@@ -15,14 +15,13 @@ interface ApiService{
     }
 
     @GET("users/{username}")
-    @Headers("Authorization: token $TOKEN")
     fun getDetailUsers(
         @Path("username") username: String
-    ): Call<ListUsersResponse>
+    ): Call<DetailUserResponse>
 
     @GET("search/users")
     @Headers("Authorization: token $TOKEN")
     fun getSearchUsers(
         @Query("q") query: String
-    ) : Call<DetailUserResponse>
+    ) : Call<ListUsersResponse>
 }

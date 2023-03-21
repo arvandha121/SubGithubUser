@@ -14,7 +14,7 @@ class ListUserAdapter : RecyclerView.Adapter<ListUserAdapter.ViewHolder>() {
     private val listUser = ArrayList<UsersResponse>()
     private var onClick: OnItemClickListener? = null
 
-    fun setData(listUser: MutableList<UsersResponse>) {
+    fun setData(listUser: List<UsersResponse>) {
         this.listUser.clear()
         this.listUser.addAll(listUser)
     }

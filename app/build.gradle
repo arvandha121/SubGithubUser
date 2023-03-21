@@ -14,7 +14,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField "String", "TOKEN", '"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"'
+        buildConfigField "String", "TOKEN", '"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"'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
