@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SubGitHubUser</string>
+    <string name="name_user">Username</string>
+    <string name="follower">Follower</string>
+    <string name="following">Following</string>
+    <string name="email">Email Pengguna</string>
+    <string name="search">Cari Users Github</string>
+    <string name="search_user">Search User</string>
+    <string name="search_hint">Find Github user…</string>
+</resources>
