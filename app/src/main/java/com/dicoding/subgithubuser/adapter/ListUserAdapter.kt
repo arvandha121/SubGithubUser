@@ -8,7 +8,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.subgithubuser.databinding.ItemRowUserBinding
-import com.dicoding.subgithubuser.response.UsersResponse
+import com.dicoding.subgithubuser.response.main.UsersResponse
 
 class ListUserAdapter : RecyclerView.Adapter<ListUserAdapter.ViewHolder>() {
     private val listUser = ArrayList<UsersResponse>()

@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.View
 import androidx.activity.viewModels
@@ -17,8 +16,7 @@ import com.dicoding.subgithubuser.R
 import com.dicoding.subgithubuser.adapter.ListUserAdapter
 import com.dicoding.subgithubuser.databinding.ActivityMainBinding
 import com.dicoding.subgithubuser.detail.DetailActivity
-import com.dicoding.subgithubuser.response.UsersResponse
-import com.google.android.material.snackbar.Snackbar
+import com.dicoding.subgithubuser.response.main.UsersResponse
 
 class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
     private val mainViewModel: MainViewModel by viewModels()
@@ -66,7 +64,6 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
                 }
             })
         }
-
         return true
     }
 
@@ -82,16 +79,6 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
         mainViewModel.isLoading.observe(this) { loading ->
             showLoading(loading)
         }
-
-//        mainViewModel.snackBarText.observe(this) { view ->
-//            view.getContentIfNotHandled()?.let { snackBarText ->
-//                Snackbar.make(
-//                    window.decorView.rootView,
-//                    snackBarText,
-//                    Snackbar.LENGTH_SHORT
-//                ).show()
-//            }
-//        }
     }
 
     private fun RecyclerView() {
@@ -104,7 +91,14 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
             this.layoutManager = layoutManager
             this.adapter = userAdapter
 
-            userAdapter.setOnItemClickListener(this@MainActivity)
+            userAdapter.setOnItemClickListener(object : ListUserAdapter.OnItemClickListener{
+                override fun onUserItemClick(user: UsersResponse) {
+                    val intentDetail = Intent(this@MainActivity, DetailActivity::class.java)
+                    intentDetail.putExtra("extra_username", user)
+                    startActivity(intentDetail)
+                }
+
+            })
         }
     }
 
@@ -120,7 +114,7 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
         userAdapter.setOnItemClickListener(object : ListUserAdapter.OnItemClickListener{
             override fun onUserItemClick(data: UsersResponse) {
                 val moveIntent = Intent(this@MainActivity, DetailActivity::class.java)
-                moveIntent.putExtra(DetailActivity.EXTRA_USERNAME, data.login)
+                moveIntent.putExtra(DetailActivity.EXTRA_USERNAME, data)
                 startActivity(moveIntent)
             }
         })

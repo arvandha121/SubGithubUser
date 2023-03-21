@@ -1,8 +1,9 @@
 package com.dicoding.subgithubuser.api
 
 import com.dicoding.subgithubuser.BuildConfig
-import com.dicoding.subgithubuser.response.DetailUserResponse
-import com.dicoding.subgithubuser.response.ListUsersResponse
+import com.dicoding.subgithubuser.response.detail.DetailResponse
+import com.dicoding.subgithubuser.response.main.ListUsersResponse
+import com.dicoding.subgithubuser.response.main.UsersResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -15,13 +16,26 @@ interface ApiService{
     }
 
     @GET("users/{username}")
+    @Headers("Authorization: token $TOKEN")
     fun getDetailUsers(
         @Path("username") username: String
-    ): Call<DetailUserResponse>
+    ): Call<DetailResponse>
 
     @GET("search/users")
     @Headers("Authorization: token $TOKEN")
     fun getSearchUsers(
         @Query("q") query: String
     ) : Call<ListUsersResponse>
+
+    @GET("users/{username}/followers")
+    @Headers("Authorization: token $TOKEN")
+    fun getFollower(
+        @Path("username") username: String
+    ): Call<List<UsersResponse>>
+
+    @GET("users/{username}/following")
+    @Headers("Authorization: token $TOKEN")
+    fun getFollowing(
+        @Path("username") username: String
+    ): Call<List<UsersResponse>>
 }

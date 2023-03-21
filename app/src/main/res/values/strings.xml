@@ -1,10 +1,17 @@
 <resources>
     <string name="app_name">SubGitHubUser</string>
     <string name="name_user">Username</string>
-    <string name="follower">Follower</string>
+    <string name="fullname_user">Nama Lengkap</string>
+    <string name="follower">Followers</string>
+    <string name="followers">10.000 Followers</string>
     <string name="following">Following</string>
+    <string name="followings">10.000 Following</string>
     <string name="email">Email Pengguna</string>
     <string name="search">Cari Users Github</string>
     <string name="search_user">Search User</string>
     <string name="search_hint">Find Github user…</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tab_text_1">Followers</string>
+    <string name="tab_text_2">Following</string>
 </resources>
