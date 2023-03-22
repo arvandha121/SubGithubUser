@@ -14,6 +14,7 @@ class DetailViewModel : ViewModel()  {
     private val _DetailUser = MutableLiveData<DetailResponse>()
     private val _snackBarText = MutableLiveData<Event<String>>()
     private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading : MutableLiveData<Boolean> = _isLoading
 
     val detailUser: LiveData<DetailResponse> = _DetailUser
 

@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.dicoding.subgithubuser.R
@@ -56,10 +58,33 @@ class DetailActivity : AppCompatActivity() {
         val viewPager : ViewPager2 = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
 
+        showLoading()
+
         val tabs: TabLayout = binding.tabs
         TabLayoutMediator(tabs, viewPager){tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
+    }
+
+    private fun showLoading(){
+        val empty = true
+        detailViewModel.isLoading.observe(this){list ->
+            if (list == empty){
+                isLoading(false)
+            }
+
+        }
+        detailViewModel.isLoading.observe(this) { loading ->
+            isLoading(loading)
+        }
+    }
+
+    private fun isLoading(loading : Boolean){
+        if (loading == true){
+            binding.progressBar.visibility = View.VISIBLE
+        }else{
+            binding.progressBar.visibility = View.INVISIBLE
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
