@@ -38,10 +38,9 @@ class DetailViewModel : ViewModel()  {
             }
 
             override fun onFailure(call: Call<DetailResponse>, t: Throwable) {
-                _snackBarText.value = Event(t.message.toString())
                 _isLoading.value = false
+                _snackBarText.value = Event(t.message.toString())
             }
-
         })
     }
 }

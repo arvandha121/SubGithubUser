@@ -16,7 +16,6 @@ class MainViewModel : ViewModel() {
     val listUser: LiveData<List<UsersResponse>> = _listUser
 
     private val _snackBarText = MutableLiveData<Event<String>>()
-    val snackBarText: LiveData<Event<String>> = _snackBarText
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -36,7 +35,6 @@ class MainViewModel : ViewModel() {
                 _isLoading.value = false
                 if (response.isSuccessful){
                     _listUser.value = response.body()?.items
-//                    _listUser.postValue(response.body()?.items)
                 }else{
                     _snackBarText.value = Event(response.message())
                 }

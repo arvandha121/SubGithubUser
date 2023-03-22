@@ -18,6 +18,7 @@ class FollowViewModel : ViewModel(){
 
     private val _snackBarText = MutableLiveData<Event<String>>()
     private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading : LiveData<Boolean> = _isLoading
 
     fun getFollower(username: String){
         if(_listFollower.value != null) return
@@ -66,8 +67,8 @@ class FollowViewModel : ViewModel(){
             }
 
             override fun onFailure(call: Call<List<UsersResponse>>, t: Throwable) {
-                _snackBarText.value = Event(t.message.toString())
                 _isLoading.value = false
+                _snackBarText.value = Event(t.message.toString())
             }
 
         })

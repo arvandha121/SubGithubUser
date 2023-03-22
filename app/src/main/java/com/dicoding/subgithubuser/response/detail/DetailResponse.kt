@@ -16,4 +16,5 @@ data class DetailResponse(
 	@SerializedName("followers")  val followers: Int,
 	@SerializedName("following")  val following: Int,
 	@SerializedName("created_at")  val createdAt: String,
+	@SerializedName("isNotEmpty") val isNotEmpty: Boolean
 ) : Parcelable

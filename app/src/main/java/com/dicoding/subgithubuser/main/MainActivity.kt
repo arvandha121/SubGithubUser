@@ -97,7 +97,6 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
                     intentDetail.putExtra("extra_username", user)
                     startActivity(intentDetail)
                 }
-
             })
         }
     }

@@ -27,6 +27,30 @@ class FollowFragment : Fragment() {
 
         userAdapter = ListUserAdapter()
         userAdapter.notifyDataSetChanged()
+
+        showLoading()
+    }
+
+    private fun showLoading(){
+        viewModel.isLoading.observe(this) { list ->
+            val empty = true
+            if (list == empty) {
+                isLoading(false)
+                RecyclerView()
+            }
+        }
+
+        viewModel.isLoading.observe(this) { loading ->
+            isLoading(loading)
+        }
+    }
+
+    private fun isLoading(loading : Boolean){
+        if (loading == true){
+            binding.progressBars.visibility = View.VISIBLE
+        }else{
+            binding.progressBars.visibility = View.INVISIBLE
+        }
     }
 
     override fun onCreateView(
