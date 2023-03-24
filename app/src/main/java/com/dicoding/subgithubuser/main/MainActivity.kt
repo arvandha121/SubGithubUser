@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
             this.layoutManager = layoutManager
             this.adapter = userAdapter
 
-            userAdapter.setOnItemClickListener(object : ListUserAdapter.OnItemClickListener{
+            userAdapter.setOnItemClickListener(object : ListUserAdapter.OnItemClickListener {
                 override fun onUserItemClick(user: UsersResponse) {
                     val intentDetail = Intent(this@MainActivity, DetailActivity::class.java)
                     intentDetail.putExtra("extra_username", user)
@@ -102,15 +102,15 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
     }
 
     private fun showLoading(loading: Boolean?) {
-        if (loading == true){
+        if (loading == true) {
             binding.progressBar.visibility = View.VISIBLE
-        }else{
+        } else {
             binding.progressBar.visibility = View.GONE
         }
     }
 
     private fun onClickCallback() {
-        userAdapter.setOnItemClickListener(object : ListUserAdapter.OnItemClickListener{
+        userAdapter.setOnItemClickListener(object : ListUserAdapter.OnItemClickListener {
             override fun onUserItemClick(data: UsersResponse) {
                 val moveIntent = Intent(this@MainActivity, DetailActivity::class.java)
                 moveIntent.putExtra(DetailActivity.EXTRA_USERNAME, data)
