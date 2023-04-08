@@ -10,7 +10,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.subgithubuser.R
@@ -20,6 +25,11 @@ import com.dicoding.subgithubuser.ui.detail.DetailActivity
 import com.dicoding.subgithubuser.data.response.main.UsersResponse
 import com.dicoding.subgithubuser.ui.favorite.FavoriteActivity
 import com.dicoding.subgithubuser.ui.setting.SettingActivity
+import com.dicoding.subgithubuser.ui.setting.SettingPreferences
+import com.dicoding.subgithubuser.ui.setting.SettingViewModel
+import com.dicoding.subgithubuser.ui.setting.ViewModelFactory
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
     private val mainViewModel: MainViewModel by viewModels()
@@ -36,6 +46,18 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val settingViewModel = ViewModelProvider(this,
+            SettingViewModel.Factory(set = SettingPreferences.getInstance(dataStore))
+        )[SettingViewModel::class.java]
+
+        settingViewModel.getThemeSetting().observe(this) {
+            if (it) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
 
         userAdapter = ListUserAdapter()
         userAdapter.notifyDataSetChanged()

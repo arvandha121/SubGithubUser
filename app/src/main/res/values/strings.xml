@@ -18,5 +18,6 @@
     <string name="list_favorite">List Favorite</string>
     <string name="setting">Setting</string>
     <string name="dark_mode">Dark Mode</string>
+    <string name="light_mode">Light Mode</string>
     <string name="btn_favorite">Add to favorite</string>
 </resources>
