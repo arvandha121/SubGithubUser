@@ -1,4 +1,4 @@
-package com.dicoding.subgithubuser.main
+package com.dicoding.subgithubuser.ui.main
 
 import android.annotation.SuppressLint
 import android.app.SearchManager
@@ -7,16 +7,19 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.subgithubuser.R
-import com.dicoding.subgithubuser.adapter.ListUserAdapter
+import com.dicoding.subgithubuser.data.adapter.ListUserAdapter
 import com.dicoding.subgithubuser.databinding.ActivityMainBinding
-import com.dicoding.subgithubuser.detail.DetailActivity
-import com.dicoding.subgithubuser.response.main.UsersResponse
+import com.dicoding.subgithubuser.ui.detail.DetailActivity
+import com.dicoding.subgithubuser.data.response.main.UsersResponse
+import com.dicoding.subgithubuser.ui.favorite.FavoriteActivity
+import com.dicoding.subgithubuser.ui.setting.SettingActivity
 
 class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
     private val mainViewModel: MainViewModel by viewModels()
@@ -43,7 +46,7 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
-
+        val intent = Intent.FLAG_ACTIVITY_SINGLE_TOP
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView = menu.findItem(R.id.search).actionView as SearchView
         searchView.apply {
@@ -54,6 +57,7 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
                     hint?.let { it ->
                         this@MainActivity.hint = it
                         mainViewModel.findUsers(this@MainActivity.hint)
+                        intent
                     }
                     searchView.clearFocus()
                     return true
@@ -64,7 +68,24 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
                 }
             })
         }
-        return true
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.fav -> {
+                Intent(this, FavoriteActivity::class.java).apply {
+                    startActivity(this)
+                }
+            }
+            R.id.settings -> {
+                Intent(this, SettingActivity::class.java).apply {
+                    startActivity(this)
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun mainViewModels() {
@@ -121,7 +142,7 @@ class MainActivity : AppCompatActivity(), ListUserAdapter.OnItemClickListener {
 
     override fun onUserItemClick(user: UsersResponse) {
         val intent = Intent(this@MainActivity, DetailActivity::class.java)
-        intent.putExtra(DetailActivity.EXTRA_USERNAME, user.login)
+        intent.putExtra(DetailActivity.EXTRA_USERNAME, user)
         startActivity(intent)
     }
 }

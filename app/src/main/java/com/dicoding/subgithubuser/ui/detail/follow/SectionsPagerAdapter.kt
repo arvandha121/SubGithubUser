@@ -1,4 +1,4 @@
-package com.dicoding.subgithubuser.util
+package com.dicoding.subgithubuser.ui.detail.follow
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

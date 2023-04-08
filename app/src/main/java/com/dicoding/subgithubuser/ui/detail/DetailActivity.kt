@@ -1,4 +1,4 @@
-package com.dicoding.subgithubuser.detail
+package com.dicoding.subgithubuser.ui.detail
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
@@ -6,18 +6,20 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.dicoding.subgithubuser.R
-import com.dicoding.subgithubuser.util.SectionsPagerAdapter
+import com.dicoding.subgithubuser.ui.detail.follow.SectionsPagerAdapter
 import com.dicoding.subgithubuser.databinding.ActivityDetailBinding
-import com.dicoding.subgithubuser.response.main.UsersResponse
+import com.dicoding.subgithubuser.data.response.main.UsersResponse
+import com.dicoding.subgithubuser.data.room.database.DatabaseModule
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailActivity : AppCompatActivity() {
-    private val detailViewModel by viewModels<DetailViewModel>()
+    private val detailViewModel by viewModels<DetailViewModel>() {
+        DetailViewModel.Factory(DatabaseModule(this))
+    }
 
     private lateinit var binding: ActivityDetailBinding
 
@@ -41,6 +43,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val username = intent.getParcelableExtra<UsersResponse>(EXTRA_USERNAME)
+
         binding.tvUsername.text = username?.login
         Log.d("DetailActivity", username.toString())
         Glide.with(this)
@@ -64,6 +67,22 @@ class DetailActivity : AppCompatActivity() {
         TabLayoutMediator(tabs, viewPager){tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
+
+        detailViewModel.resultSuccessFavorite.observe(this) {
+            binding.btnFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+        }
+
+        detailViewModel.resultDeleteFavorite.observe(this) {
+            binding.btnFavorite.setImageResource(R.drawable.ic_baseline_favorite_border)
+        }
+
+        binding.btnFavorite.setOnClickListener {
+            detailViewModel.setFavorite(username)
+        }
+
+        detailViewModel.findFavorite(username?.id ?: 0) {
+            binding.btnFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+        }
     }
 
     private fun showLoading(){

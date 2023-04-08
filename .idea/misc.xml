@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Kotlin/SubGithubUser/app/src/main/res/drawable-v24/ic_baseline_favorite_24.xml" value="0.2125" />
+        <entry key="..\:/Kotlin/SubGithubUser/app/src/main/res/layout/activity_detail.xml" value="0.10989583333333333" />
+        <entry key="..\:/Kotlin/SubGithubUser/app/src/main/res/layout/activity_favorite.xml" value="0.25" />
+        <entry key="..\:/Kotlin/SubGithubUser/app/src/main/res/menu/main_menu.xml" value="0.25" />
+        <entry key="..\:/Kotlin/SubGithubUsers/app/src/main/res/layout/activity_detail.xml" value="0.1" />
+        <entry key="..\:/Kotlin/SubGithubUsers/app/src/main/res/layout/activity_favorite.xml" value="0.25" />
+        <entry key="..\:/Kotlin/SubGithubUsers/app/src/main/res/layout/activity_setting.xml" value="0.25" />
+        <entry key="..\:/Kotlin/SubGithubUsers/app/src/main/res/layout/fragment_follow.xml" value="0.25" />
+        <entry key="..\:/Kotlin/SubGithubUsers/app/src/main/res/layout/item_row_user.xml" value="0.17889492753623187" />
+        <entry key="..\:/Kotlin/SubGithubUsers/app/src/main/res/menu/main_menu.xml" value="0.25" />
         <entry key="..\:/Kuliah/Materi dan Tugas Kuliah/Semester6/Studi Independen Bangkit - Kampus Merdeka/Course/SubGitHubUser/app/src/main/res/layout/activity_detail.xml" value="0.264" />
         <entry key="..\:/Kuliah/Materi dan Tugas Kuliah/Semester6/Studi Independen Bangkit - Kampus Merdeka/Course/SubGitHubUser/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Kuliah/Materi dan Tugas Kuliah/Semester6/Studi Independen Bangkit - Kampus Merdeka/Course/SubGitHubUser/app/src/main/res/layout/fragment_follow.xml" value="0.264" />

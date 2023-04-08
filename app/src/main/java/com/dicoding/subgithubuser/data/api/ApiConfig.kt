@@ -1,4 +1,4 @@
-package com.dicoding.subgithubuser.api
+package com.dicoding.subgithubuser.data.api
 
 import com.dicoding.subgithubuser.BuildConfig
 import okhttp3.OkHttpClient

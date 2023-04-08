@@ -1,4 +1,4 @@
-package com.dicoding.subgithubuser.adapter
+package com.dicoding.subgithubuser.data.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.subgithubuser.databinding.ItemRowUserBinding
-import com.dicoding.subgithubuser.response.main.UsersResponse
+import com.dicoding.subgithubuser.data.response.main.UsersResponse
 
 class ListUserAdapter : RecyclerView.Adapter<ListUserAdapter.ViewHolder>() {
     private val listUser = ArrayList<UsersResponse>()
@@ -23,12 +23,12 @@ class ListUserAdapter : RecyclerView.Adapter<ListUserAdapter.ViewHolder>() {
         this.onClick = onClick
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListUserAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemRowUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ListUserAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(listUser[position])
     }
 

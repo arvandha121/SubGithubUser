@@ -1,10 +1,11 @@
-package com.dicoding.subgithubuser.util
+package com.dicoding.subgithubuser.ui.detail.follow
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dicoding.subgithubuser.api.ApiConfig
-import com.dicoding.subgithubuser.response.main.UsersResponse
+import com.dicoding.subgithubuser.data.api.ApiConfig
+import com.dicoding.subgithubuser.data.response.main.UsersResponse
+import com.dicoding.subgithubuser.util.Event
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

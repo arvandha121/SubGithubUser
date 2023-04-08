@@ -1,4 +1,4 @@
-package com.dicoding.subgithubuser.util
+package com.dicoding.subgithubuser.ui.detail.follow
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -11,10 +11,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.subgithubuser.adapter.ListUserAdapter
+import com.dicoding.subgithubuser.data.adapter.ListUserAdapter
 import com.dicoding.subgithubuser.databinding.FragmentFollowBinding
-import com.dicoding.subgithubuser.detail.DetailActivity
-import com.dicoding.subgithubuser.response.main.UsersResponse
+import com.dicoding.subgithubuser.ui.detail.DetailActivity
+import com.dicoding.subgithubuser.data.response.main.UsersResponse
 
 class FollowFragment : Fragment() {
     private val viewModel by viewModels<FollowViewModel>()

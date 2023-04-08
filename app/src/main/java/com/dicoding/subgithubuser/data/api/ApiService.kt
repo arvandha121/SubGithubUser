@@ -1,9 +1,9 @@
-package com.dicoding.subgithubuser.api
+package com.dicoding.subgithubuser.data.api
 
 import com.dicoding.subgithubuser.BuildConfig
-import com.dicoding.subgithubuser.response.detail.DetailResponse
-import com.dicoding.subgithubuser.response.main.ListUsersResponse
-import com.dicoding.subgithubuser.response.main.UsersResponse
+import com.dicoding.subgithubuser.data.response.detail.DetailResponse
+import com.dicoding.subgithubuser.data.response.main.ListUsersResponse
+import com.dicoding.subgithubuser.data.response.main.UsersResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
