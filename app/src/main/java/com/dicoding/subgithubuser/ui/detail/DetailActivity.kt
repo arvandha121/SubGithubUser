@@ -1,9 +1,12 @@
 package com.dicoding.subgithubuser.ui.detail
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.viewpager2.widget.ViewPager2
@@ -13,6 +16,7 @@ import com.dicoding.subgithubuser.ui.detail.follow.SectionsPagerAdapter
 import com.dicoding.subgithubuser.databinding.ActivityDetailBinding
 import com.dicoding.subgithubuser.data.response.main.UsersResponse
 import com.dicoding.subgithubuser.data.room.database.DatabaseModule
+import com.dicoding.subgithubuser.ui.favorite.FavoriteActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -83,6 +87,22 @@ class DetailActivity : AppCompatActivity() {
         detailViewModel.findFavorite(username?.id ?: 0) {
             binding.btnFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.fav_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.fav -> {
+                Intent(this@DetailActivity, FavoriteActivity::class.java).apply {
+                    startActivity(this)
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun showLoading(){
