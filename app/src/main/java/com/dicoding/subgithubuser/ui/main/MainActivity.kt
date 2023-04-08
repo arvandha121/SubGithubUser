@@ -27,7 +27,6 @@ import com.dicoding.subgithubuser.ui.favorite.FavoriteActivity
 import com.dicoding.subgithubuser.ui.setting.SettingActivity
 import com.dicoding.subgithubuser.ui.setting.SettingPreferences
 import com.dicoding.subgithubuser.ui.setting.SettingViewModel
-import com.dicoding.subgithubuser.ui.setting.ViewModelFactory
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 

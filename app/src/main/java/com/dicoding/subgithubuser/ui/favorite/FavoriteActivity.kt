@@ -3,29 +3,14 @@ package com.dicoding.subgithubuser.ui.favorite
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Button
 import androidx.activity.viewModels
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.startActivity
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
 import com.dicoding.subgithubuser.R
-import com.dicoding.subgithubuser.data.adapter.ListUserAdapter
 import com.dicoding.subgithubuser.data.adapter.UserAdapter
 import com.dicoding.subgithubuser.data.response.main.UsersResponse
 import com.dicoding.subgithubuser.data.room.database.DatabaseModule
 import com.dicoding.subgithubuser.databinding.ActivityFavoriteBinding
 import com.dicoding.subgithubuser.ui.detail.DetailActivity
-import com.dicoding.subgithubuser.ui.detail.DetailActivity.Companion.EXTRA_USERNAME
-import com.dicoding.subgithubuser.ui.detail.follow.SectionsPagerAdapter
 
 class FavoriteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoriteBinding

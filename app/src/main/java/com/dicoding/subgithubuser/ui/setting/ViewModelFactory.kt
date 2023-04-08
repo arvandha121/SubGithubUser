@@ -3,7 +3,6 @@ package com.dicoding.subgithubuser.ui.setting
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.dicoding.subgithubuser.ui.main.MainViewModel
 
 class ViewModelFactory(private val pref: SettingPreferences) : ViewModelProvider.NewInstanceFactory() {
 
