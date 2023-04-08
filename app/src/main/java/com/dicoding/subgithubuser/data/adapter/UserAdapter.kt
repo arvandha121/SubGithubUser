@@ -2,7 +2,6 @@ package com.dicoding.subgithubuser.data.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -17,15 +16,17 @@ class UserAdapter(
     private val listener: (UsersResponse) -> Unit
 ) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
-    private var onClick: ListUserAdapter.OnItemClickListener? = null
 
+    private var onClick: OnItemClickListener? = null
+
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(data: MutableList<UsersResponse>) {
         this.data.clear()
         this.data.addAll(data)
         notifyDataSetChanged()
     }
 
-    fun setOnItemClickListener(onClick: ListUserAdapter.OnItemClickListener) {
+    fun setOnItemClickListener(onClick: OnItemClickListener) {
         this.onClick = onClick
     }
 
@@ -40,12 +41,18 @@ class UserAdapter(
                     .load(user.avatarUrl)
                     .apply(requestOptions)
                     .into(imgUserPicture)
+                root.setOnClickListener {
+                    val onClick: OnItemClickListener? = null
+                    if (onClick != null) {
+                        onClick.onUserItemClick(user)
+                    }
+                }
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserAdapter.UserViewHolder =
-        UserAdapter.UserViewHolder(
+        UserViewHolder(
             ItemRowUserBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -53,7 +60,7 @@ class UserAdapter(
             )
         )
 
-    override fun onBindViewHolder(holder: UserAdapter.UserViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val item = data[position]
         holder.bind(item)
         holder.itemView.setOnClickListener {
@@ -61,5 +68,10 @@ class UserAdapter(
         }
     }
 
+    interface OnItemClickListener {
+        fun onUserItemClick(user: UsersResponse)
+    }
+
     override fun getItemCount(): Int = data.size
+
 }
