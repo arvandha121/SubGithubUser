@@ -17,6 +17,7 @@ import com.dicoding.subgithubuser.databinding.ActivityDetailBinding
 import com.dicoding.subgithubuser.data.response.main.UsersResponse
 import com.dicoding.subgithubuser.data.room.database.DatabaseModule
 import com.dicoding.subgithubuser.ui.favorite.FavoriteActivity
+import com.dicoding.subgithubuser.ui.main.MainActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -129,5 +130,12 @@ class DetailActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(applicationContext, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
+        finish()
     }
 }
