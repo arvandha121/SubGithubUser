@@ -18,6 +18,7 @@ import com.dicoding.subgithubuser.data.response.main.UsersResponse
 import com.dicoding.subgithubuser.data.room.database.DatabaseModule
 import com.dicoding.subgithubuser.ui.favorite.FavoriteActivity
 import com.dicoding.subgithubuser.ui.main.MainActivity
+import com.dicoding.subgithubuser.ui.setting.SettingActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -99,6 +100,11 @@ class DetailActivity : AppCompatActivity() {
         when(item.itemId) {
             R.id.fav -> {
                 Intent(this@DetailActivity, FavoriteActivity::class.java).apply {
+                    startActivity(this)
+                }
+            }
+            R.id.settings -> {
+                Intent(this@DetailActivity, SettingActivity::class.java).apply {
                     startActivity(this)
                 }
             }
