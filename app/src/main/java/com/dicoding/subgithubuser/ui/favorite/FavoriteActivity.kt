@@ -11,7 +11,6 @@ import com.dicoding.subgithubuser.data.response.main.UsersResponse
 import com.dicoding.subgithubuser.data.room.database.DatabaseModule
 import com.dicoding.subgithubuser.databinding.ActivityFavoriteBinding
 import com.dicoding.subgithubuser.ui.detail.DetailActivity
-import com.dicoding.subgithubuser.ui.main.MainActivity
 
 class FavoriteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoriteBinding
